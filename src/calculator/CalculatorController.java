@@ -1,14 +1,15 @@
 package calculator;
 
+        import javafx.event.ActionEvent;
+        import javafx.fxml.FXML;
+        import javafx.fxml.Initializable;
+        import javafx.scene.control.Button;
+        import javafx.scene.control.TextField;
 
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
-
-import java.net.URL;
-import java.util.ResourceBundle;
+        import java.math.BigDecimal;
+        import java.math.RoundingMode;
+        import java.net.URL;
+        import java.util.ResourceBundle;
 
 public class CalculatorController implements Initializable {
 
@@ -30,12 +31,11 @@ public class CalculatorController implements Initializable {
 
 
     //Attributes for the calculation operation:
-    private double resultOfCalculation = 0.0;
-    private double operand;
-    private double operand1;
-    private double operand2;
+    private BigDecimal resultOfCalculation = BigDecimal.valueOf(0.0);
+    private String operandString = "";
+    private BigDecimal operand;
     private char operation;
-    private boolean operatorSelected = false;
+    private char nextOperation = 'z';
 
 
     //Methods for handling FXML button actions:
@@ -59,11 +59,12 @@ public class CalculatorController implements Initializable {
         } else if (event.getSource() == sevenBtn) {
             clickedNumbBtn(sevenBtn);
         } else if (event.getSource() == eightBtn) {
-                clickedNumbBtn(eightBtn);
+            clickedNumbBtn(eightBtn);
         } else if (event.getSource() == nineBtn) {
             clickedNumbBtn(nineBtn);
         }
     }
+
 
     @FXML
     protected void handleOperatorBtnAction(ActionEvent event) {
@@ -75,7 +76,9 @@ public class CalculatorController implements Initializable {
             clickedOperationBtn(timesBtn);
         } else if (event.getSource() == obelusBtn) {
             clickedOperationBtn(obelusBtn);
-        }
+        } //else if (event.getSource() == equalBtn) {
+        //  calculateResult();
+        //}
         //Other operators - TO DO..
     }
 
@@ -89,48 +92,47 @@ public class CalculatorController implements Initializable {
     //Methods for handling the Actions depending on the operation:
 
     private void clickedNumbBtn(Button btn) {
-        calculationDisplay.setText(calculationDisplay.getText() + " " + btn.getText());
-        resultOfCalculation = Double.parseDouble(resultDisplay.getText());
-        operand = Double.parseDouble(btn.getText());
-        if (operatorSelected) {
-            calculateResult();
-        }
+        calculationDisplay.setText(calculationDisplay.getText() + btn.getText());
+        operandString += btn.getText();
+        operation = nextOperation;
     }
 
     private void clickedOperationBtn(Button btn) {
-        calculationDisplay.setText(calculationDisplay.getText() + " " + btn.getText());
-        operation = btn.getText().charAt(0);
-        operand1 = operand;
-        operand = 0.0;
-        operatorSelected = true;
+        calculationDisplay.setText(calculationDisplay.getText() + " " + btn.getText() + " ");
+        nextOperation = btn.getText().charAt(0);
+        calculateResult();
     }
 
 
     private void calculateResult() {
-        operand2 = operand;
-
-        switch (operation) {
-            case '+':
-                resultOfCalculation = operand1 + operand2;
-                break;
-            case '-':
-                resultOfCalculation = operand1 - operand2;
-                break;
-            case '*':
-                resultOfCalculation = operand1 * operand2;
-                break;
-            case '/':
-                resultOfCalculation = operand1 / operand2;
-                break;
+        operand = new BigDecimal(operandString);
+        if (operation != 'z') {
+            switch (operation) {
+                case '+':
+                    resultOfCalculation = resultOfCalculation.add(operand);
+                    break;
+                case '-':
+                    resultOfCalculation = resultOfCalculation.subtract(operand);
+                    break;
+                case '*':
+                    resultOfCalculation = resultOfCalculation.multiply(operand);
+                    break;
+                case '/':
+                    try {
+                        resultOfCalculation = resultOfCalculation.divide(operand, RoundingMode.UNNECESSARY);
+                    } catch (ArithmeticException e) {
+                        System.out.println("Division not applicable.");
+                        resultDisplay.setText("Division by 0 not applicable.");
+                        // TO DO in the case of exception...
+                    }
+                    break;
+            }
+            resultDisplay.setText(String.valueOf(resultOfCalculation));
+        } else {
+            resultOfCalculation = operand;
         }
-
-        operand = 0.0;
-        operatorSelected = false;
-        resultDisplay.setText(String.valueOf(resultOfCalculation));
+        operandString = "";
     }
-
-
-
 
 
 
