@@ -1,15 +1,14 @@
 package calculator;
 
-        import javafx.event.ActionEvent;
-        import javafx.fxml.FXML;
-        import javafx.fxml.Initializable;
-        import javafx.scene.control.Button;
-        import javafx.scene.control.TextField;
-
-        import java.math.BigDecimal;
-        import java.math.RoundingMode;
-        import java.net.URL;
-        import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 public class CalculatorController implements Initializable {
 
