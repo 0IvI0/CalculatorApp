@@ -6,7 +6,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -32,8 +31,8 @@ public class CalculatorController implements Initializable {
     //Attributes for the calculation operation:
     private BigDecimal resultOfCalculation = BigDecimal.valueOf(0.0);
     private String operandString = "";
-    private BigDecimal operand;
-    private char operation;
+    private BigDecimal operand = BigDecimal.ZERO;
+    private char operation = 'z';
     private char nextOperation = 'z';
 
 
@@ -83,6 +82,9 @@ public class CalculatorController implements Initializable {
 
     @FXML
     protected void handleFunctionBtnAction(ActionEvent event) {
+        if (event.getSource() == clearBtn) {
+            clearCalculations();
+        }
         // TO DO..
     }
 
@@ -134,6 +136,15 @@ public class CalculatorController implements Initializable {
     }
 
 
+    private void clearCalculations() {
+        calculationDisplay.setText("");
+        resultOfCalculation = BigDecimal.valueOf(0.0);
+        resultDisplay.setText(String.valueOf(resultOfCalculation));
+        operandString = "";
+        operand = BigDecimal.ZERO;
+        operation = 'z';
+        nextOperation = 'z';
+    }
 
 
     @Override
