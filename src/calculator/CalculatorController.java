@@ -75,9 +75,9 @@ public class CalculatorController implements Initializable {
             clickedOperationBtn(timesBtn);
         } else if (event.getSource() == obelusBtn) {
             clickedOperationBtn(obelusBtn);
-        } //else if (event.getSource() == equalBtn) {
-        //  calculateResult();
-        //}
+        } else if (event.getSource() == equalBtn) {
+          calculateResult();
+        }
         //Other operators - TO DO..
     }
 
