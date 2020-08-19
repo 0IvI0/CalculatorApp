@@ -118,7 +118,7 @@ public class CalculatorController implements Initializable {
                     break;
                 case '/':
                     try {
-                        resultOfCalculation = resultOfCalculation.divide(operand, RoundingMode.UNNECESSARY);
+                        resultOfCalculation = resultOfCalculation.divide(operand);
                     } catch (ArithmeticException e) {
                         System.out.println("Division not applicable.");
                         resultDisplay.setText("Division by 0 not applicable.");
