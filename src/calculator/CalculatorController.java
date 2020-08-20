@@ -5,6 +5,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import java.math.BigDecimal;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -88,6 +90,43 @@ public class CalculatorController implements Initializable {
         // TO DO..
     }
 
+    @FXML
+    protected void handleKeyPress(KeyEvent keyEvent) {
+        if (keyEvent.getCode() == KeyCode.DIGIT0 || keyEvent.getCode() == KeyCode.NUMPAD0) {
+            clickedNumbBtn(zeroBtn);
+        } else if (keyEvent.getCode() == KeyCode.DIGIT1 || keyEvent.getCode() == KeyCode.NUMPAD1) {
+            clickedNumbBtn(oneBtn);
+        } else if (keyEvent.getCode() == KeyCode.DIGIT2 || keyEvent.getCode() == KeyCode.NUMPAD2) {
+            clickedNumbBtn(twoBtn);
+        } else if (keyEvent.getCode() == KeyCode.DIGIT3 || keyEvent.getCode() == KeyCode.NUMPAD3) {
+            clickedNumbBtn(threeBtn);
+        } else if (keyEvent.getCode() == KeyCode.DIGIT4 || keyEvent.getCode() == KeyCode.NUMPAD4) {
+            clickedNumbBtn(fourBtn);
+        } else if (keyEvent.getCode() == KeyCode.DIGIT5 || keyEvent.getCode() == KeyCode.NUMPAD5) {
+            clickedNumbBtn(fiveBtn);
+        } else if (keyEvent.getCode() == KeyCode.DIGIT6 || keyEvent.getCode() == KeyCode.NUMPAD6) {
+            clickedNumbBtn(sixBtn);
+        } else if (keyEvent.getCode() == KeyCode.DIGIT7 || keyEvent.getCode() == KeyCode.NUMPAD7) {
+            clickedNumbBtn(sevenBtn);
+        } else if (keyEvent.getCode() == KeyCode.DIGIT8 || keyEvent.getCode() == KeyCode.NUMPAD8) {
+            clickedNumbBtn(eightBtn);
+        } else if (keyEvent.getCode() == KeyCode.DIGIT9 || keyEvent.getCode() == KeyCode.NUMPAD9) {
+            clickedNumbBtn(nineBtn);
+        } else if (keyEvent.getCode() == KeyCode.PLUS || keyEvent.getCode() == KeyCode.ADD) {
+            clickedOperationBtn(plusBtn);
+        } else if (keyEvent.getCode() == KeyCode.MINUS || keyEvent.getCode() == KeyCode.SUBTRACT) {
+            clickedOperationBtn(minusBtn);
+        } else if (keyEvent.getCode() == KeyCode.MULTIPLY) {
+            clickedOperationBtn(timesBtn);
+        } else if (keyEvent.getCode() == KeyCode.DIVIDE) {
+            clickedOperationBtn(obelusBtn);
+        } else if (keyEvent.getCode() == KeyCode.EQUALS || keyEvent.getCode() == KeyCode.ENTER) {
+            calculateResult();
+        }  //else if (keyEvent.getCode() == KeyCode.BACK_SPACE) {
+            //..
+        //}
+    }
+
 
 
     //Methods for handling the Actions depending on the operation:
@@ -151,4 +190,5 @@ public class CalculatorController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
     }
+
 }
