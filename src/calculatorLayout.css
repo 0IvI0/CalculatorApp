@@ -1,0 +1,40 @@
+.root {
+    -fx-background-color: #262626;
+}
+
+.button {
+    -fx-background-color: #404040;
+    -fx-text-fill: #ffcc00;
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow(gaussian, #1a1a1a, 10, 0.7, 5px, 5px);
+}
+
+.button:pressed {
+        -fx-effect: dropshadow(gaussian, #1a1a1a, 10, 0.1, 5px, 5px);
+}
+
+#plusBtn, #minusBtn, #timesBtn, #obelusBtn, #equalBtn, #percentBtn {
+    -fx-background-color: #595959;
+    -fx-text-fill: #ff407f;
+    -fx-font-size: 18px;
+}
+
+#negativeSignBtn, #decimalSeparatorBtn {
+    -fx-background-color: #737373;
+    -fx-text-fill: #00ffff;
+}
+
+#clearBtn, #backBtn, #delBtn, #saveBtn {
+    -fx-background-color: #8c8c8c;
+    -fx-text-fill: #00ff80;
+}
+
+#calculationDisplay {
+    -fx-background-color: #e6e6e6;
+    -fx-text-fill: #000000;
+}
+
+#resultDisplay {
+    -fx-background-color: #d9d9d9;
+    -fx-text-fill: #000000;
+}
